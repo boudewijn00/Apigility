@@ -23,7 +23,7 @@ class AlbumMapper
  
     public function fetchOne($albumId)
     {
-        $sql = 'SELECT * FROM album WHERE album_id = ?';
+        $sql = 'SELECT * FROM album WHERE id = ?';
         $resultset = $this->adapter->query($sql, array($albumId));
         $data = $resultset->toArray();
         if (!$data) {
