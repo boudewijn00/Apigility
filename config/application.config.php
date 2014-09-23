@@ -24,7 +24,8 @@ return array(
         'ZF\\Versioning',
         'StatusLib',
         'Status',
-        'Music'
+        'Music',
+        'Theridiid'
     ),
     'module_listener_options' => array(
         'module_paths' => array(
