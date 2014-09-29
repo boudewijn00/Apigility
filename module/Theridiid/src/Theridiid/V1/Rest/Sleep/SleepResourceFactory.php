@@ -5,6 +5,7 @@ class SleepResourceFactory
 {
     public function __invoke($services)
     {
-        return new SleepResource();
+        $mapper = $services->get('Theridiid\V1\Rest\Sleep\SleepMapper');
+        return new SleepResource($mapper);
     }
 }

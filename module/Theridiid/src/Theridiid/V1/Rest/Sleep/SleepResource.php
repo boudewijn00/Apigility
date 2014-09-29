@@ -6,6 +6,14 @@ use ZF\Rest\AbstractResourceListener;
 
 class SleepResource extends AbstractResourceListener
 {
+    
+    protected $mapper;
+ 
+    public function __construct($mapper)
+    {
+        $this->mapper = $mapper;
+    }
+    
     /**
      * Create a resource
      *
@@ -14,7 +22,7 @@ class SleepResource extends AbstractResourceListener
      */
     public function create($data)
     {
-        return new ApiProblem(405, 'The POST method has not been defined');
+        return $this->mapper->insert($data);
     }
 
     /**
@@ -58,7 +66,7 @@ class SleepResource extends AbstractResourceListener
      */
     public function fetchAll($params = array())
     {
-        return new ApiProblem(405, 'The GET method has not been defined for collections');
+        return $this->mapper->fetchAll();
     }
 
     /**

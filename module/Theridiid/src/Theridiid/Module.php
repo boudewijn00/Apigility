@@ -20,4 +20,16 @@ class Module implements ApigilityProviderInterface
             ),
         );
     }
+    
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+            'Theridiid\V1\Rest\Sleep\SleepMapper' =>  function ($sm) {
+                $adapter = $sm->get('Zend\Db\Adapter\Adapter');
+                return new \Theridiid\V1\Rest\Sleep\SleepMapper($adapter);
+            },
+            ),
+        );
+    }
 }
