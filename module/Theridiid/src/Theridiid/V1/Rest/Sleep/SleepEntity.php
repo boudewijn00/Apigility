@@ -5,23 +5,26 @@ class SleepEntity
 {
 
     public $id;
-    public $alchohol;
-    public $rating;
+    public $start;
+    public $longitude;
+    public $latitude;
  
     public function getArrayCopy()
     {
         return array(
             'id'     => $this->id,
-            'alchohol' => $this->alchohol,
-            'rating'  => $this->rating,
+            'start' => $this->start,
+            'longitude'  => $this->longitude,
+            'longitude'  => $this->latitude
         );
     }
  
     public function exchangeArray(array $array)
     {
         $this->id     = $array['id'];
-        $this->alchohol = $array['alchohol'];
-        $this->rating  = $array['rating'];
+        $this->alchohol = $array['start'];
+        $this->longitude  = $array['longitude'];
+        $this->latitude  = $array['latitude'];
     }
     
 }

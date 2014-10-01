@@ -18,8 +18,10 @@
 
 return array(
   'db' => array(
-    'driver'   => 'Pdo_Sqlite',
-    'database' => 'data/sleep.db',
+    'driver'    => 'Pdo',
+    'dsn'       => 'mysql:dbname=sleep;host=localhost',
+    'username'  => 'root',
+    'password'  => 'seth1053'
   ),
   'service_manager' => array(
     'factories' => array(
