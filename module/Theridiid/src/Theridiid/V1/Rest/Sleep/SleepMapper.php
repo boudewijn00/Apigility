@@ -20,14 +20,18 @@ class SleepMapper
  
     public function fetchAll()
     {
+        
         $select = new Select('sleep');
         $paginatorAdapter = new DbSelect($select, $this->adapter);
         $collection = new SleepCollection($paginatorAdapter);
+        
         return $collection;
+        
     }
  
     public function fetchOne($sleepId)
     {
+        
         $sql = 'SELECT * FROM sleep WHERE id = ?';
         $resultset = $this->adapter->query($sql, array($sleepId));
         $data = $resultset->toArray();
@@ -37,7 +41,9 @@ class SleepMapper
  
         $entity = new SleepEntity();
         $entity->exchangeArray($data[0]);
+        
         return $entity;
+        
     }
     
     public function insert($data)
@@ -76,6 +82,14 @@ class SleepMapper
         $entity->exchangeArray($values);
         
         return $entity;
+        
+    }
+    
+    public function delete($id)
+    {
+        
+        echo $id;
+        //\Zend\Debug\Debug::dump($id);die();
         
     }
     
