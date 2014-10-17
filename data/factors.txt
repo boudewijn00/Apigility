@@ -1,0 +1,19 @@
+PRE
+
+1. 	alcohol				(0-10)
+2. 	kid(s) around			(yes/no)
+3. 	worked				(0-120)
+4. 	digital input (movie, browsing)	(0-120)
+5. 	tea				(0-10)
+6. 	sex				(yes/no)
+7. 	eaten				(0-120)
+8. 	fear				(0-10)
+9. 	stress				(0-10)
+10.	room				(0-10)
+
+POST
+
+1.	energy				(0-10)
+2.	woken up			(0-05)
+3.	fear				(0-10)
+4.	dreamed				(yes/no)

@@ -48,23 +48,20 @@ class SleepMapper
     
     public function insert($data)
     {
-        
-        //\Zend\Debug\Debug::dump($data);die();
-        
+
         $values = array(
-        'alchohol' => (string) $data->alchohol,
-        'rating'=> (string) $data->rating
+        'start' => date("Y-m-d H:i:s"),
+        'longitude'=> 1234567890,
+        'latitude'=> 1234567890,
         );
         
-        //\Zend\Debug\Debug::dump($values);die();
-        
-        $insert = new Sql($this->adapter);
-        $insert = new Insert('sleep');
-        
+        // insert sleep record
+        $insert = new Insert('sleep');        
         $insert->columns(array(
         'id',
-        'alchohol',
-        'rating'
+        'start',
+        'longitude',
+        'latitude',
         ));
         
         $insert->values($values);
@@ -75,6 +72,41 @@ class SleepMapper
         
         $result = $tableGateway->insertWith($insert);
         $values['id'] = $tableGateway->lastInsertValue;
+        
+        // query to find factor based on name
+        $sql = 'SELECT * FROM factors WHERE name = ?';
+        
+        // insert sleep has pre factor record
+        $sleepPreFactor = new Insert('sleep_has_pre_factors');        
+        $sleepPreFactor->columns(array(
+            'id_sleep',
+            'id_factors',
+            'value',
+        ));
+        
+        // instance table gateway for sleep has pre factors table
+        $tableGateway = new TableGateway(
+            'sleep_has_pre_factors', $this->adapter
+        );
+        
+        // go through send name/ value pairs
+        foreach($data AS $name => $value){
+            
+            
+            
+            $resultset = $this->adapter->query($sql, array($name))->toArray();
+            $factorId = $resultset[0]["id"];
+            
+            $factorValues = array(
+                'id_sleep' => $values['id'],
+                'id_factors' => $factorId,
+                'value'=> $value,
+            );
+         
+            $sleepPreFactor->values($factorValues);
+            $tableGateway->insertWith($sleepPreFactor);
+            
+        }
         
         //\Zend\Debug\Debug::dump($id);die();
         
